@@ -25,6 +25,11 @@
 .booking-section{background:#e8eee5}.booking-layout{display:grid;grid-template-columns:.9fr 1fr;gap:8%;align-items:start}.booking-intro .body-copy{max-width:430px;margin-top:20px}.booking-info-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.booking-info-pills span{font-size:9px;background:#f8faf5;border:1px solid #dfe6da;color:#53634f;padding:10px 13px;border-radius:999px}
 .booking-card{background:#fffefa;border:1px solid #e1e6dc;border-radius:27px;padding:clamp(23px,4vw,36px);box-shadow:0 18px 50px #263b2410}.booking-card-head{display:flex;justify-content:space-between;align-items:start;gap:15px;padding-bottom:22px;border-bottom:1px solid var(--line)}.booking-card-head h3{font-size:19px;margin:0;letter-spacing:-.05em}.booking-card-head p{font-size:10px;color:#85897f;margin:7px 0 0}.free-tag{background:var(--mint);color:var(--green-dark);padding:8px 11px;border-radius:999px;font-size:9px;font-weight:800;white-space:nowrap}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:22px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:10px;font-weight:700;color:#555d52}.field input,.field select,.field textarea{width:100%;border:1px solid #dfe2d9;background:#fafbf7;color:#20231f;border-radius:13px;padding:13px 13px;font-size:12px;outline:none;min-width:0;transition:border .2s,box-shadow .2s}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6d8869;box-shadow:0 0 0 3px #7892711d}.field textarea{min-height:78px;resize:vertical}.check-row{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:10px;line-height:1.7;color:#666d62}.check-row input{accent-color:var(--green);margin-top:3px}.submit-button{width:100%;margin-top:22px;border:0;border-radius:999px;background:var(--green-dark);color:white;padding:16px;font-size:11px;font-weight:700;transition:background .2s,transform .2s}.submit-button:hover{background:#2f4933;transform:translateY(-1px)}.form-note{font-size:9px;line-height:1.8;color:#878b81;margin:13px 0 0}.form-result{display:none;margin-top:15px;border-radius:14px;padding:14px;background:#e1eadf;color:#304a32;font-size:11px;line-height:1.8}.form-result.show{display:block}
+.date-availability{font-size:10px;line-height:1.7;color:#7c8178;margin-top:1px;padding:10px 12px;border-radius:11px;background:#f1f2ec}
+.date-availability.available{color:#355e39;background:#e5efe2}
+.date-availability.unavailable{color:#9b3939;background:#f8e8e5}
+.date-availability.checking{color:#7b6a42;background:#f7f0df}
+.submit-button:disabled{opacity:.65;cursor:wait}
 .footer{padding:35px 7% 22px;background:#20231f;color:white}.footer-top{display:flex;justify-content:space-between;align-items:center;gap:25px;padding-bottom:25px;border-bottom:1px solid #ffffff22}.footer .brand-name small{color:#a7b0a2}.footer-links{display:flex;gap:17px;flex-wrap:wrap;font-size:9px;color:#c2c7bd}.footer-bottom{display:flex;justify-content:space-between;gap:15px;padding-top:17px;font-size:8px;color:#a3a99e;line-height:1.8}.footer-bottom span:last-child{text-align:right}
 .toast{position:fixed;z-index:90;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#20231f;color:white;padding:14px 19px;border-radius:14px;font-size:11px;line-height:1.7;width:max-content;max-width:88vw;box-shadow:0 12px 35px #0002;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:translateY(0)}
@@ -47,7 +52,7 @@
     <div class="hero-pill"><i></i> 하루 한 명만을 위한 프라이빗 스테이</div>
     <h1><span>BBANGBBANG</span><span class="accent">HOTEL.</span></h1>
     <p class="hero-sub">황금똥빵과 함께 하는<br>특별한 숙박</p>
-    <p class="hero-desc">한경국립대학교 호연관 6층 · 기숙사 사생 전용</p>
+    <p class="hero-desc">한경국립대학교 호연관 6층 · 프라이빗 스테이</p>
     <div class="hero-actions"><a class="button-primary" href="#booking">예약 페이지로 <span>↗</span></a><a class="button-glass" href="#intro">호텔 알아보기 ↓</a></div>
   </div>
   <div class="hero-bottom"><div><strong>BBANGBBANG HOTEL</strong>한경국립대학교 · 호연관 6층</div><a class="scroll-link" href="#intro">더 알아보기 <span></span></a></div>
@@ -73,7 +78,7 @@
 <section class="section" id="room">
   <div class="room reveal">
     <div class="room-image"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=85" alt="포근한 침대가 있는 객실"><div class="room-tag">ROYAL POOP SUITE · 001</div></div>
-    <div class="room-content"><div class="eyebrow">THE SIGNATURE ROOM</div><h2 class="section-title">황금똥빵과<br><em>함께 쓰는 방.</em></h2><p class="body-copy">독특한 이름만큼 특별한 룸메이트 경험. 황금찬과 함께 쓰는 방이므로, 예약 전 동거 조건을 꼭 확인해 주세요.</p><div class="room-badges"><span class="badge">하루 한 명</span><span class="badge">무료 예약</span><span class="badge">기숙사 사생 전용</span></div><a class="text-link" href="#rules">이용 규칙 확인하기 <span>↗</span></a></div>
+    <div class="room-content"><div class="eyebrow">THE SIGNATURE ROOM</div><h2 class="section-title">황금똥빵과<br><em>함께 쓰는 방.</em></h2><p class="body-copy">독특한 이름만큼 특별한 룸메이트 경험. 황금찬과 함께 쓰는 방이므로, 예약 전 동거 조건을 꼭 확인해 주세요.</p><div class="room-badges"><span class="badge">하루 한 명</span><span class="badge">무료 예약</span></div><a class="text-link" href="#rules">이용 규칙 확인하기 <span>↗</span></a></div>
   </div>
 </section>
 
@@ -89,7 +94,7 @@
       <article class="rule"><small>07 · 이용 대상</small><strong>남성 및 적정 연령대</strong><p>남성만 이용할 수 있으며, 너무 어리거나 많은 연령대는 이용이 제한될 수 있습니다. 구체적인 기준은 점장에게 확인해 주세요.</p></article>
       <article class="rule"><small>08 · 참고 사항</small><strong>점장은 게이가 아님*</strong><p>*콘셉트의 유머성 안내 문구입니다.</p></article>
     </div>
-    <div class="big-warning"><small>가장 중요한 주의사항 · MOST IMPORTANT</small><h3>당신은 기숙사 사생이어야 합니다!</h3><p>기숙사 사생만 이용할 수 있습니다. 예약 신청 전에 본인이 이용 조건에 해당하는지 꼭 확인해 주세요.</p></div>
+    <div class="big-warning"><small>가장 중요한 주의사항 · MOST IMPORTANT</small><h3>예약 전 이용 규칙을 확인해 주세요.</h3><p>예약은 무료이며, 하루 한 명만 이용할 수 있습니다. 날짜 아래의 숙박 가능 여부를 확인한 뒤 신청해 주세요.</p></div>
   </div>
 </section>
 
@@ -100,20 +105,20 @@
 
 <section class="section booking-section" id="booking">
   <div class="booking-layout">
-    <div class="booking-intro reveal"><div class="eyebrow">RESERVATION</div><h2 class="section-title">당신의 특별한<br><em>숙박을 예약하세요.</em></h2><p class="body-copy">예약 금액은 무료입니다. 예약 신청은 공용 데이터베이스에 저장되며, 관리자의 확인 후 확정됩니다.</p><div class="booking-info-pills"><span>하루 한 명</span><span>무료 예약</span><span>기숙사 사생 전용</span></div></div>
+    <div class="booking-intro reveal"><div class="eyebrow">RESERVATION</div><h2 class="section-title">당신의 특별한<br><em>숙박을 예약하세요.</em></h2><p class="body-copy">예약 금액은 무료입니다. 선택한 날짜의 예약 현황을 확인한 뒤 신청해 주세요. 예약 신청은 관리자 확인 후 확정 또는 취소됩니다.</p><div class="booking-info-pills"><span>하루 한 명</span><span>무료 예약</span><span>프라이빗 스테이</span></div></div>
     <form class="booking-card reveal" id="bookingForm">
       <div class="booking-card-head"><div><h3>스테이 신청서</h3><p>BBANGBBANG HOTEL · HOYEON 6F</p></div><span class="free-tag">₩0 · FREE</span></div>
       <div class="form-grid">
         <div class="field"><label for="guestName">예약자 이름</label><input id="guestName" name="guestName" type="text" placeholder="이름을 입력하세요" required autocomplete="name"></div>
         <div class="field"><label for="guestAge">나이</label><input id="guestAge" name="guestAge" type="number" min="1" max="120" placeholder="나이" required></div>
-        <div class="field"><label for="stayDate">희망 숙박일</label><input id="stayDate" name="stayDate" type="date" required></div>
+        <div class="field full"><label for="stayDate">체크인 날짜</label><input id="stayDate" name="stayDate" type="date" required><div class="date-availability" id="dateAvailability" aria-live="polite">날짜를 선택하면 아래에서 숙박 가능 여부를 확인할 수 있습니다.</div></div>
         <div class="field"><label for="gender">이용 대상 확인</label><select id="gender" name="gender" required><option value="">선택해 주세요</option><option value="male">남성</option><option value="other">기타 / 답변 원치 않음</option></select></div>
         
         <div class="field full"><label for="note">점장에게 전달할 말 (선택)</label><textarea id="note" name="note" placeholder="요청 사항이 있다면 적어 주세요."></textarea></div>
       </div>
       <label class="check-row"><input type="checkbox" id="agree" required><span>황금찬과 함께 쓰는 방이며, 이용 규칙과 전기·비품 사용 주의사항을 확인했습니다.</span></label>
       <button class="submit-button" type="submit">신청 내용 확인하기 ↗</button>
-      <p class="form-note">예약 정보는 공용 데이터베이스에 저장됩니다. 이름과 메모 등 개인정보는 관리자만 확인할 수 있습니다.</p>
+      <p class="form-note">예약 신청 후 관리자가 확인합니다. 예약이 확정되기 전까지는 예약 완료 상태가 아닙니다.</p>
       <div class="form-result" id="formResult" role="status" aria-live="polite"></div>
     </form>
   </div>
@@ -134,62 +139,58 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 let toastTimer;
 function showToast(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),3500)}
 const dateInput=document.getElementById('stayDate');
+const availabilityEl=document.getElementById('dateAvailability');
 const today=new Date();const localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);dateInput.min=localDate;
-/*
- * Supabase 연결 정보: Project URL과 Publishable key만 입력하세요.
- * service_role / secret 키는 절대 넣지 마세요.
- */
+
+/* Supabase 연결 정보: Project URL과 Publishable key만 입력하세요. */
 const SUPABASE_URL = "https://uwcgnlxdaohzjuoejxrq.supabase.co"; 
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_G6I6GLst0-ANx2zlfxS1uw_dxtq88MX";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-function isSupabaseConfigured(){
-  return !SUPABASE_URL.includes("YOUR-PROJECT-REF") &&
-         !SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE");
+function isSupabaseConfigured(){return !SUPABASE_URL.includes("YOUR-PROJECT-REF")&&!SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE");}
+
+async function refreshAvailability(){
+  const date=dateInput.value;
+  if(!date){availabilityEl.className='date-availability';availabilityEl.textContent='날짜를 선택하면 아래에서 숙박 가능 여부를 확인할 수 있습니다.';return;}
+  if(!isSupabaseConfigured()){availabilityEl.className='date-availability checking';availabilityEl.textContent='Supabase 연결 설정 후 숙박 가능 여부를 확인할 수 있습니다.';return;}
+  availabilityEl.className='date-availability checking';availabilityEl.textContent='숙박 가능 여부를 확인하고 있습니다…';
+  try{
+    const {data,error}=await supabaseClient.rpc('get_public_availability');
+    if(error) throw error;
+    const occupied=(data||[]).some(r=>r.status!=='cancelled' && date>=r.check_in && date<r.check_out);
+    if(occupied){availabilityEl.className='date-availability unavailable';availabilityEl.textContent='● 숙박 불가 · 이미 예약이 있거나 승인 대기 중인 날짜입니다.';dateInput.dataset.available='false';}
+    else{availabilityEl.className='date-availability available';availabilityEl.textContent='● 숙박 가능 · 현재 예약이 없는 날짜입니다.';dateInput.dataset.available='true';}
+  }catch(err){availabilityEl.className='date-availability checking';availabilityEl.textContent='예약 현황을 불러오지 못했습니다. Supabase URL과 Publishable key를 확인해 주세요.';dateInput.dataset.available='unknown';}
 }
-document.getElementById('bookingForm').addEventListener('submit', async event=>{
+dateInput.addEventListener('change',refreshAvailability);
+
+document.getElementById('bookingForm').addEventListener('submit',async event=>{
   event.preventDefault();
-  const result=document.getElementById('formResult');
+  const result=document.getElementById('formResult');result.classList.remove('show');
   const name=document.getElementById('guestName').value.trim();
   const age=Number(document.getElementById('guestAge').value);
   const gender=document.getElementById('gender').value;
-  const date=document.getElementById('stayDate').value;
+  const date=dateInput.value;
   const note=document.getElementById('note').value.trim();
-  if(!isSupabaseConfigured()){
-    result.textContent='Supabase 연결 설정이 필요합니다. index.html의 SUPABASE_URL과 SUPABASE_PUBLISHABLE_KEY를 입력해 주세요.';
-    result.classList.add('show'); return;
-  }
-  if(age<18||age>55){
-    result.textContent='연령 조건을 점장에게 먼저 확인해 주세요.';
-    result.classList.add('show'); return;
-  }
-  if(gender!=='male'){
-    result.textContent='현재 콘셉트상 남성 이용객만 신청할 수 있습니다.';
-    result.classList.add('show'); return;
-  }
-  if(!date){result.textContent='희망 숙박일을 선택해 주세요.';result.classList.add('show');return;}
-  if(!document.getElementById('agree').checked){
-    result.textContent='이용 규칙에 동의해 주세요.';result.classList.add('show');return;
-  }
-  const checkOutDate=new Date(date+'T00:00:00');
-  checkOutDate.setDate(checkOutDate.getDate()+1);
+  if(!isSupabaseConfigured()){result.textContent='Supabase 연결 설정이 필요합니다. index.html의 SUPABASE_URL과 SUPABASE_PUBLISHABLE_KEY를 입력해 주세요.';result.classList.add('show');return;}
+  if(age<18||age>55){result.textContent='죄송합니다. 연령 조건을 점장에게 먼저 확인해 주세요.';result.classList.add('show');return;}
+  if(gender!=='male'){result.textContent='죄송합니다. 현재 콘셉트상 남성 이용객만 신청할 수 있습니다.';result.classList.add('show');return;}
+  if(!date){result.textContent='체크인 날짜를 선택해 주세요.';result.classList.add('show');return;}
+  if(dateInput.dataset.available==='false'){result.textContent='죄송합니다. 예약이 취소되었습니다. 선택한 날짜에는 숙박할 수 없습니다. 다른 날짜를 선택해 주세요.';result.classList.add('show');return;}
+  if(dateInput.dataset.available!=='true'){await refreshAvailability();if(dateInput.dataset.available!=='true'){result.textContent='숙박 가능 여부를 확인할 수 없습니다. 잠시 후 다시 시도해 주세요.';result.classList.add('show');return;}}
+  if(!document.getElementById('agree').checked){result.textContent='이용 규칙을 다시 한 번 확인하고 동의해 주세요.';result.classList.add('show');return;}
+  const checkOutDate=new Date(date+'T00:00:00');checkOutDate.setDate(checkOutDate.getDate()+1);
   const checkOut=[checkOutDate.getFullYear(),String(checkOutDate.getMonth()+1).padStart(2,'0'),String(checkOutDate.getDate()).padStart(2,'0')].join('-');
-  const submit=document.querySelector('#bookingForm .submit-button');
-  submit.disabled=true;submit.textContent='예약 신청 중…';
+  const submit=document.querySelector('#bookingForm .submit-button');submit.disabled=true;submit.textContent='예약 신청 중…';
   try{
-    const {error}=await supabaseClient.rpc('create_reservation',{
-      p_name:name,p_age:age,p_check_in:date,p_check_out:checkOut,
-      p_gender:gender,p_dorm:'yes',p_memo:note
-    });
+    const {error}=await supabaseClient.rpc('create_reservation',{p_name:name,p_age:age,p_check_in:date,p_check_out:checkOut,p_gender:gender,p_dorm:'yes',p_memo:note});
     if(error) throw error;
-    result.textContent=`${name}님, 예약 신청이 접수되었습니다! 희망 숙박일: ${date}. 관리자 확인 후 예약이 확정됩니다.`;
+    result.innerHTML='<strong>예약 신청이 접수되었습니다.</strong><br>관리자가 확인한 뒤 예약 확정 또는 취소 여부를 안내합니다.';
     result.classList.add('show');
-    document.getElementById('bookingForm').reset();
+    dateInput.dataset.available='';await refreshAvailability();
   }catch(err){
-    result.textContent='예약 신청에 실패했습니다: '+(err.message||'잠시 후 다시 시도해 주세요.');
-    result.classList.add('show');
-  }finally{
-    submit.disabled=false;submit.textContent='신청 내용 확인하기 ↗';
-  }
+    result.innerHTML='<strong>죄송합니다. 예약이 취소되었습니다.</strong><br>예약을 완료하지 못했습니다. 해당 날짜가 방금 예약되었거나 일시적인 오류가 발생했을 수 있습니다. 다른 날짜로 다시 신청해 주세요.';
+    result.classList.add('show');await refreshAvailability();
+  }finally{submit.disabled=false;submit.textContent='예약 신청하기 ↗';}
 });
 document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',event=>{const target=document.querySelector(link.getAttribute('href'));if(target){event.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}));
 </script>
