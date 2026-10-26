@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e9f0e8">
+<title>BBANGBBANG HOTEL</title>
+<style>
+:root{--bg:#f6f7f2;--paper:#fff;--ink:#20251f;--muted:#747b70;--green:#dce9dc;--green2:#b9d0b8;--deep:#42634a;--gold:#d6b46a;--line:#e7e9e1;--red:#b74d43;--radius:25px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.55}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:850;letter-spacing:-.7px;font-size:18px}.brand span{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:12px;background:var(--green);margin-right:8px}
+.navlinks{display:flex;gap:8px}.navlinks button{background:transparent;color:var(--muted);padding:10px 13px;border-radius:14px}.navlinks button:hover{background:#e9eee5;color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:38px 0 30px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:1.6px;color:var(--deep);text-transform:uppercase}
+h1{font-size:clamp(40px,7vw,76px);line-height:.98;letter-spacing:-3.5px;margin:14px 0 20px}h1 span{color:var(--deep)}
+.lead{font-size:18px;color:#555d52;max-width:460px}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.btn{padding:13px 18px;border-radius:16px;font-weight:750;transition:transform .15s,background .15s}.btn:active{transform:scale(.98)}.primary{background:var(--deep);color:white}.secondary{background:var(--green);color:var(--deep)}.plain{background:#f1f2ed;color:var(--ink)}
+.hero-art{min-height:330px;border-radius:34px;background:linear-gradient(145deg,#e8eee2,#cbdcc8);display:grid;place-items:center;position:relative;overflow:hidden}
+.sun{position:absolute;width:190px;height:190px;background:#f8e8b8;border-radius:50%;right:8%;top:10%;opacity:.8}
+.hotel-emoji{font-size:120px;z-index:1;filter:drop-shadow(0 14px 12px #6a7b5b25);transform:rotate(-5deg)}
+.art-caption{position:absolute;bottom:18px;left:20px;right:20px;background:#ffffffc9;backdrop-filter:blur(10px);padding:14px 17px;border-radius:18px;font-size:13px;color:#4c584a}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:38px 0 18px}.section-head h2{font-size:27px;letter-spacing:-1px;margin:0}.section-head p{color:var(--muted);margin:0;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px}.icon{font-size:26px}.card h3{margin:12px 0 5px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:14px}
+.notice{background:#f0ead9;border-radius:var(--radius);padding:22px 24px;margin-top:18px}.notice h3{margin:0 0 10px}.notice ul{padding-left:20px;margin:0;color:#615a48}.notice li{margin:5px 0}
+.booking-area{display:grid;grid-template-columns:1fr .8fr;gap:18px;align-items:start;margin:20px 0 55px}.panel{background:white;border:1px solid var(--line);border-radius:28px;padding:24px}.panel h2{margin:0 0 6px;letter-spacing:-1px}.sub{color:var(--muted);font-size:14px;margin:0 0 20px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:13px;font-weight:750;color:#454c42}input,select,textarea{width:100%;border:1px solid #dfe3d9;border-radius:13px;padding:12px 13px;background:#fcfcfa;outline:none}input:focus,select:focus,textarea:focus{border-color:#7c9c7e;box-shadow:0 0 0 3px #dce9dc}textarea{resize:vertical;min-height:78px}.check{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:#62695f}.check input{width:auto;margin-top:4px}.check label{font-weight:500}.fullbtn{grid-column:1/-1;width:100%;margin-top:4px}
+.availability{background:#edf2e9;border-radius:22px;padding:20px}.availability h3{margin:0 0 8px}.availability p{font-size:14px;color:#596453;margin:0 0 12px}.date-list{display:grid;gap:8px}.date-row{display:flex;justify-content:space-between;gap:8px;background:#ffffffb8;border-radius:13px;padding:10px 12px;font-size:13px}.pill{font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:#f5e6c2;color:#735a21;white-space:nowrap}.pill.confirmed{background:#d7ead6;color:#315b37}.pill.cancelled{background:#eee;color:#777}
+footer{padding:25px 0 35px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:15px}
+.modal-backdrop{position:fixed;inset:0;background:#1720187a;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal-backdrop.show{display:flex}.modal{width:min(480px,100%);background:white;border-radius:28px;padding:28px;box-shadow:0 25px 80px #0002}.modal h2{font-size:27px;letter-spacing:-1px;margin:0 0 10px}.modal p{color:#5d655a}.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.admin{display:none;margin:0 0 55px}.admin.show{display:block}.admin-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.admin-list{display:grid;gap:10px;margin-top:16px}.reservation{border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:12px}.reservation p{margin:4px 0;color:var(--muted);font-size:13px}.reservation-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.small{padding:8px 11px;border-radius:11px;font-size:12px;font-weight:750}.confirm{background:#dcebd9;color:#315b37}.cancel{background:#f7e3e0;color:#a23f36}.empty{padding:20px;border-radius:16px;background:#f6f7f2;color:var(--muted);text-align:center}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#20251f;color:white;padding:12px 18px;border-radius:14px;display:none;z-index:20;font-size:14px;max-width:calc(100% - 30px)}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:22px}.hero-art{min-height:240px}.hotel-emoji{font-size:94px}.cards{grid-template-columns:1fr}.booking-area{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.navlinks button{padding:8px;font-size:12px}.brand{font-size:15px}h1{letter-spacing:-2px}.panel{padding:19px}}
+@media(max-width:420px){form{grid-template-columns:1fr}.field.full,.fullbtn{grid-column:auto}.reservation{grid-template-columns:1fr}.navlinks{gap:0}.brand span{margin-right:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand"><span>💩</span> BBANGBBANG HOTEL</div>
+    <div class="navlinks"><button onclick="scrollToId('about')">호텔 소개</button><button onclick="scrollToId('booking')">예약하기</button><button onclick="location.href='admin.html'">관리자</button></div>
+  </nav>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">A VERY SPECIAL STAY</div>
+        <h1>BBANGBBANG<br><span>HOTEL.</span></h1>
+        <p class="lead">황금똥빵과 함께 하는 특별한 숙박.<br>하루의 피로를 내려놓고, 샴푸는 적당히 사용하세요.</p>
+        <div class="hero-buttons"><button class="btn primary" onclick="scrollToId('booking')">예약 신청하기 ↗</button><button class="btn secondary" onclick="scrollToId('rules')">주의사항 보기</button></div>
+      </div>
+      <div class="hero-art"><div class="sun"></div><div class="hotel-emoji">💩</div><div class="art-caption"><strong>황금똥빵이 기다리고 있습니다.</strong><br>체크인 전, 아래 주의사항을 꼭 확인해주세요.</div></div>
+    </section>
+
+    <section id="about">
+      <div class="section-head"><h2>머무는 동안 필요한 것들</h2><p>작지만 알찬 풀옵션 스테이</p></div>
+      <div class="cards">
+        <article class="card"><div class="icon">🛏️</div><h3>편안한 침대</h3><p>하루의 피로를 풀어줄 포근한 휴식 공간.</p></article>
+        <article class="card"><div class="icon">🧴</div><h3>기본 어메니티</h3><p>샴푸, 바디로션, 폼클렌징, 수건까지 준비 완료.</p></article>
+        <article class="card"><div class="icon">🔌</div><h3>충전기 이용</h3><p>황금찬 점장이 사용하지 않을 때 이용할 수 있습니다.</p></article>
+      </div>
+    </section>
+
+    <section class="notice" id="rules">
+      <h3>📌 투숙 전 꼭 읽어주세요</h3>
+      <ul>
+        <li><strong>당신은 기숙사 사생이어야 합니다!</strong></li>
+        <li>남성 투숙객만 이용할 수 있습니다.</li>
+        <li>샴푸와 어메니티를 과도하게 사용하면 점장이 화낼 수 있습니다.</li>
+        <li>전기를 아껴주세요. 사용하지 않는 조명은 꺼주세요.</li>
+        <li>충전기는 황금찬 점장이 사용하지 않을 때만 이용 가능합니다.</li>
+        <li>황금똥빵과 황금찬이 함께 사용하는 공간입니다.</li>
+      </ul>
+    </section>
+
+    <section id="booking">
+      <div class="section-head"><h2>예약 신청</h2><p>예약 금액: 무료</p></div>
+      <div class="booking-area">
+        <div class="panel">
+          <h2>투숙 정보를 입력해주세요.</h2>
+          <p class="sub">신청 후 관리자 확정을 기다려주세요.</p>
+          <form id="bookingForm">
+            <div class="field"><label for="guestName">예약자 이름</label><input id="guestName" maxlength="30" required placeholder="이름 또는 별명"></div>
+            <div class="field"><label for="guestAge">나이</label><input id="guestAge" type="number" min="18" max="55" required placeholder="만 나이"></div>
+            <div class="field"><label for="checkIn">체크인</label><input id="checkIn" type="date" required></div>
+            <div class="field"><label for="checkOut">체크아웃</label><input id="checkOut" type="date" required></div>
+            <div class="field"><label for="gender">투숙객</label><select id="gender" required><option value="">선택해주세요</option><option value="male">남성</option><option value="other">기타</option></select></div>
+            <div class="field"><label for="dorm">기숙사 사생인가요?</label><select id="dorm" required><option value="">선택해주세요</option><option value="yes">네, 사생입니다</option><option value="no">아니요</option></select></div>
+            <div class="field full"><label for="memo">전달 사항 (선택)</label><textarea id="memo" maxlength="300" placeholder="점장님께 전달할 사항"></textarea></div>
+            <div class="field full check"><input id="agree" type="checkbox" required><label for="agree">이용 규칙과 주의사항을 확인했으며 동의합니다.</label></div>
+            <button class="btn primary fullbtn" type="submit">예약 신청하기</button>
+          </form>
+        </div>
+        <aside class="availability">
+          <h3>📅 예약 현황</h3><p>모든 방문자의 예약 현황이 공유됩니다. 신청 중이거나 확정된 날짜는 예약할 수 없어요.</p>
+          <div class="date-list" id="dateList"><div class="empty">아직 예약이 없습니다.</div></div>
+          <p style="margin-top:14px;font-size:12px">※ 예약은 공용 데이터베이스에 저장됩니다. 예약자 정보는 관리자만 확인할 수 있습니다.</p>
+        </aside>
+      </div>
+    </section>
+</main>
+  <footer><span>💩 BBANGBBANG HOTEL · 황금똥빵과 함께 하는 특별한 숙박</span><span>가상의 재미용 호텔 사이트</span></footer>
+</div>
+
+<div class="modal-backdrop" id="successModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div style="font-size:38px;margin-bottom:8px">🎉</div>
+    <h2>예약 신청이 완료되었습니다!</h2>
+    <p id="successText">관리자 확정을 기다려주세요.</p>
+    <div class="modal-actions"><button class="btn secondary" onclick="closeModal();scrollToId('rules')">주의사항 다시 읽기</button><button class="btn primary" onclick="closeModal()">확인</button></div>
+  </div>
+</div>
+<div class="modal-backdrop" id="confirmedModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div style="font-size:38px;margin-bottom:8px">🎉</div>
+    <h2>축하합니다! 예약이 확정되셨습니다!</h2>
+    <p>아래 주의사항을 다시 한 번 읽어주세요!</p>
+    <p><strong>그때 뵙겠습니다~</strong><br>💩 BBANGBBANG HOTEL</p>
+    <div class="modal-actions"><button class="btn secondary" onclick="closeConfirmed();scrollToId('rules')">주의사항 다시 읽기</button><button class="btn primary" onclick="closeConfirmed()">확인</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/*
+ * BBANGBBANG HOTEL · Supabase edition
+ * Fill in Project URL and Publishable key from Supabase → Connect/API Keys.
+ * Never place a service_role or secret key in this file.
+ */
+const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const $ = id => document.getElementById(id);
+const today = new Date();
+const localISO = d => { const x = new Date(d.getTime()-d.getTimezoneOffset()*60000); return x.toISOString().slice(0,10); };
+$("checkIn").min = localISO(today);
+$("checkOut").min = localISO(new Date(today.getFullYear(),today.getMonth(),today.getDate()+1));
+$("checkIn").addEventListener("change",()=>{const v=$("checkIn").value;if(v){const d=new Date(v+"T00:00:00");d.setDate(d.getDate()+1);$("checkOut").min=localISO(d);if($("checkOut").value && $("checkOut").value<=v)$("checkOut").value="";}});
+function statusLabel(s){return s==="pending"?"승인 대기":s==="confirmed"?"예약 확정":"취소됨"}
+function statusClass(s){return s==="confirmed"?"confirmed":s==="cancelled"?"cancelled":""}
+function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function isConfigured(){return !SUPABASE_URL.includes("YOUR-PROJECT-REF")&&!SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE")}
+async function renderAvailability(){
+ if(!isConfigured()){$("dateList").innerHTML='<div class="empty">Supabase 연결 설정이 필요합니다.<br>README.md의 4단계를 확인해주세요.</div>';return}
+ const {data,error}=await supabaseClient.rpc("get_public_availability");
+ if(error){$("dateList").innerHTML=`<div class="empty">예약 현황을 불러오지 못했습니다.<br>${escapeHTML(error.message)}</div>`;return}
+ const rows=data||[];
+ $("dateList").innerHTML=rows.length?rows.map(r=>`<div class="date-row"><span>${escapeHTML(r.check_in)} ~ ${escapeHTML(r.check_out)}</span><span class="pill ${statusClass(r.status)}">${statusLabel(r.status)}</span></div>`).join(""):'<div class="empty">아직 예약이 없습니다.</div>';
+}
+$("bookingForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!isConfigured()){toast("Supabase URL과 Publishable key를 먼저 설정해주세요.");return}
+ const booking={p_name:$("guestName").value.trim(),p_age:Number($("guestAge").value),p_check_in:$("checkIn").value,p_check_out:$("checkOut").value,p_gender:$("gender").value,p_dorm:$("dorm").value,p_memo:$("memo").value.trim()};
+ if(!booking.p_name){toast("이름을 입력해주세요.");return}
+ if(booking.p_age<18||booking.p_age>55){toast("이 호텔은 만 18세부터 55세까지 이용할 수 있습니다.");return}
+ if(booking.p_gender!=="male"){toast("죄송합니다. 남성 투숙객만 예약할 수 있습니다.");return}
+ if(booking.p_dorm!=="yes"){toast("죄송합니다. 기숙사 사생만 예약할 수 있습니다.");return}
+ if(!booking.p_check_in||!booking.p_check_out||booking.p_check_in>=booking.p_check_out){toast("체크아웃은 체크인 다음 날짜 이후여야 합니다.");return}
+ if(!$("agree").checked){toast("이용 규칙에 동의해주세요.");return}
+ const submit=$("bookingForm").querySelector('button[type="submit"]');
+ submit.disabled=true;submit.textContent="예약 신청 중…";
+ try{
+   const {data,error}=await supabaseClient.rpc("create_reservation",booking);
+   if(error)throw error;
+   $("bookingForm").reset();
+   $("checkIn").min=localISO(new Date());$("checkOut").min=localISO(new Date(Date.now()+86400000));
+   $("successText").textContent=`${booking.p_name}님, 예약 신청이 접수되었습니다. 관리자 확정을 기다려주세요. (${booking.p_check_in} ~ ${booking.p_check_out})`;
+   $("successModal").classList.add("show");
+   await renderAvailability();
+ }catch(err){
+   const msg=String(err.message||"");
+   if(msg.includes("DATE_CONFLICT")||msg.includes("겹치")||msg.includes("예약"))toast(msg.replace("Error: ",""));
+   else toast(msg||"예약 신청에 실패했습니다.");
+ }finally{submit.disabled=false;submit.textContent="예약 신청하기"}
+});
+function closeModal(){$("successModal").classList.remove("show")}
+function closeConfirmed(){$("confirmedModal").classList.remove("show")}
+function toast(msg){const t=$("toast");t.textContent=msg;t.style.display="block";clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>t.style.display="none",4000)}
+function scrollToId(id){$(id).scrollIntoView({behavior:"smooth",block:"start"})}
+renderAvailability();
+</script>
+</body>
+</html>
