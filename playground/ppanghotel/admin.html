@@ -59,7 +59,7 @@ async function setStatus(id,status){
  const {error}=await client.from("reservations").update({status}).eq("id",id);
  if(error){toast(error.message);return}
  await loadReservations();
- if(status==="confirmed")alert("🎉 축하합니다! 예약이 확정되셨습니다!\n\n아래 주의사항을 다시 한 번 읽어주세요!\n\n그때 뵙겠습니다~");
+ if(status==="confirmed")alert("예약을 승인했습니다.");
  else toast("예약이 취소되었습니다.");
 }
 async function deleteReservation(id){
