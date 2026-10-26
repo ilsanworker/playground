@@ -92,7 +92,7 @@
       <article class="rule"><small>05 · 충전기</small><strong>점장이 사용하지 않을 때만</strong><p>황금찬 점장이 충전기를 사용하지 않을 때 이용할 수 있습니다. 사용 전 확인해 주세요.</p></article>
       <article class="rule"><small>06 · 전기 절약</small><strong>불은 꼭 꺼 주세요</strong><p>전기를 많이 쓰면 점장이 화낼 수 있습니다. 사용하지 않는 조명과 전자기기는 꺼 주세요.</p></article>
       <article class="rule"><small>07 · 이용 대상</small><strong>남성 및 적정 연령대</strong><p>남성만 이용할 수 있으며, 너무 어리거나 많은 연령대는 이용이 제한될 수 있습니다. 구체적인 기준은 점장에게 확인해 주세요.</p></article>
-      <article class="rule"><small>08 · 참고 사항</small><strong>점장은 게이가 아님*</strong><p>*콘셉트의 유머성 안내 문구입니다.</p></article>
+      <article class="rule"><small>08 · 참고 사항</small><strong>점장은 게이가 아님*</strong></article>
     </div>
     <div class="big-warning"><small>가장 중요한 주의사항 · MOST IMPORTANT</small><h3>예약 전 이용 규칙을 확인해 주세요.</h3><p>예약은 무료이며, 하루 한 명만 이용할 수 있습니다. 날짜 아래의 숙박 가능 여부를 확인한 뒤 신청해 주세요.</p></div>
   </div>
@@ -143,10 +143,58 @@ const availabilityEl=document.getElementById('dateAvailability');
 const today=new Date();const localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);dateInput.min=localDate;
 
 /* Supabase 연결 정보: Project URL과 Publishable key만 입력하세요. */
-const SUPABASE_URL = "https://uwcgnlxdaohzjuoejxrq.supabase.co"; 
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_G6I6GLst0-ANx2zlfxS1uw_dxtq88MX";
+const SUPABASE_URL = "https://uwcgnlxdaohzjuoejxrq.supabase.co"; const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_G6I6GLst0-ANx2zlfxS1uw_dxtq88MX";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 function isSupabaseConfigured(){return !SUPABASE_URL.includes("YOUR-PROJECT-REF")&&!SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE");}
+
+/* 마지막 예약을 이 브라우저에 기억해 재방문 시 상태를 다시 확인합니다. */
+const LAST_RESERVATION_KEY = 'bbangbbang_last_reservation_v1';
+function saveLastReservation(reservation){
+  try{localStorage.setItem(LAST_RESERVATION_KEY,JSON.stringify(reservation));}catch(e){}
+}
+function getLastReservation(){
+  try{return JSON.parse(localStorage.getItem(LAST_RESERVATION_KEY)||'null');}catch(e){return null;}
+}
+function renderReservationStatus(status, name, date){
+  const result=document.getElementById('formResult');
+  const formattedDate=date||'';
+  result.classList.remove('show');
+  if(status==='confirmed'){
+    result.innerHTML=`<strong>🎉 축하합니다! 예약이 확정되었습니다!</strong><br>주의사항을 다시 한 번 확인해주세요.<br><small>${formattedDate} · 예약자 ${escapeHtml(name||'')}</small>`;
+  }else if(status==='cancelled'){
+    result.innerHTML=`<strong>죄송합니다. 예약이 취소되었습니다.</strong><br>다른 날짜를 선택해 다시 신청해 주세요.<br><small>${formattedDate}</small>`;
+  }else{
+    result.innerHTML=`<strong>예약 신청이 접수되었습니다.</strong><br>관리자가 확인 중입니다. 확정 또는 취소될 때까지 이 페이지에서 상태를 확인할 수 있습니다.<br><small>${formattedDate}</small>`;
+  }
+  result.classList.add('show');
+}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+async function restoreLastReservationStatus(){
+  const last=getLastReservation();
+  if(!last||!last.checkIn||!isSupabaseConfigured())return;
+  const result=document.getElementById('formResult');
+  result.innerHTML='<strong>예약 상태를 확인하고 있습니다…</strong>';
+  result.classList.add('show');
+  try{
+    const {data,error}=await supabaseClient.rpc('get_public_availability');
+    if(error)throw error;
+    const sameDate=(data||[]).filter(r=>r.check_in===last.checkIn);
+    // Public availability RPC exposes only dates/statuses. The most relevant row for this date is used.
+    const active=sameDate.find(r=>r.status==='confirmed') || sameDate.find(r=>r.status==='pending');
+    if(active){
+      last.status=active.status;
+      saveLastReservation(last);
+      renderReservationStatus(active.status,last.name,last.checkIn);
+    }else{
+      // No active reservation remains on the saved date, so show the cancellation/unavailable state.
+      last.status='cancelled';saveLastReservation(last);
+      renderReservationStatus('cancelled',last.name,last.checkIn);
+    }
+  }catch(err){
+    result.innerHTML='<strong>예약 상태를 불러오지 못했습니다.</strong><br>인터넷 연결과 Supabase 설정을 확인한 뒤 새로고침해 주세요.';
+    result.classList.add('show');
+  }
+}
 
 async function refreshAvailability(){
   const date=dateInput.value;
@@ -162,6 +210,8 @@ async function refreshAvailability(){
   }catch(err){availabilityEl.className='date-availability checking';availabilityEl.textContent='예약 현황을 불러오지 못했습니다. Supabase URL과 Publishable key를 확인해 주세요.';dateInput.dataset.available='unknown';}
 }
 dateInput.addEventListener('change',refreshAvailability);
+window.addEventListener('load',()=>{restoreLastReservationStatus();});
+setInterval(()=>{const last=getLastReservation();if(last&&isSupabaseConfigured())restoreLastReservationStatus();},15000);
 
 document.getElementById('bookingForm').addEventListener('submit',async event=>{
   event.preventDefault();
@@ -184,8 +234,8 @@ document.getElementById('bookingForm').addEventListener('submit',async event=>{
   try{
     const {error}=await supabaseClient.rpc('create_reservation',{p_name:name,p_age:age,p_check_in:date,p_check_out:checkOut,p_gender:gender,p_dorm:'yes',p_memo:note});
     if(error) throw error;
-    result.innerHTML='<strong>예약 신청이 접수되었습니다.</strong><br>관리자가 확인한 뒤 예약 확정 또는 취소 여부를 안내합니다.';
-    result.classList.add('show');
+    saveLastReservation({name,checkIn:date,checkOut,status:'pending',savedAt:new Date().toISOString()});
+    renderReservationStatus('pending',name,date);
     dateInput.dataset.available='';await refreshAvailability();
   }catch(err){
     result.innerHTML='<strong>죄송합니다. 예약이 취소되었습니다.</strong><br>예약을 완료하지 못했습니다. 해당 날짜가 방금 예약되었거나 일시적인 오류가 발생했을 수 있습니다. 다른 날짜로 다시 신청해 주세요.';
