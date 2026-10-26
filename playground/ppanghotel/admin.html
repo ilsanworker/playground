@@ -27,13 +27,13 @@ a{color:var(--deep);text-decoration:none;font-size:14px;font-weight:700}.panel{b
  <div class="notice">승인 대기 중인 예약도 날짜를 점유합니다. 취소하면 해당 날짜는 다시 예약할 수 있습니다.</div>
  <div class="list" id="reservationList"><div class="empty">예약을 불러오는 중…</div></div>
 </section>
-<footer class="muted" style="padding:25px 0 35px;border-top:1px solid var(--line)">💩 BBANGBBANG HOTEL · 가상의 재미용 호텔 사이트</footer>
+<footer class="muted" style="padding:25px 0 35px;border-top:1px solid var(--line)">💩 BBANGBBANG HOTEL</footer>
 </div><div class="toast" id="toast"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* Use the same project URL and Publishable key as index.html. */
 const SUPABASE_URL="https://YOUR-PROJECT-REF.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="YOUR_SUPABASE_PUBLISHABLE_KEY";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_G6I6GLst0-ANx2zlfxS1uw_dxtq88MX";
 const client=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 const $=id=>document.getElementById(id);
 function configured(){return !SUPABASE_URL.includes("YOUR-PROJECT-REF")&&!SUPABASE_PUBLISHABLE_KEY.includes("YOUR_SUPABASE")}
