@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10110f">
+<title>빵빵호텔 | BBANGBBANG HOTEL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171815;--paper:#f5f3ed;--gold:#c8aa73;--muted:#77786f;--line:rgba(255,255,255,.23)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans","Noto Sans KR",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.topbar{position:absolute;z-index:5;top:0;left:0;width:100%;padding:25px 5.4%;display:flex;align-items:center;justify-content:space-between;color:#fff;border-bottom:1px solid rgba(255,255,255,.2)}
+.brand{display:flex;align-items:center;gap:12px;font-size:20px;letter-spacing:.13em;font-weight:700}.brand-mark{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--gold);border-radius:50%;color:var(--gold);font-size:19px;letter-spacing:0}
+.nav{display:flex;gap:32px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.nav a{opacity:.83;transition:.2s}.nav a:hover{opacity:1;color:var(--gold)}
+.book-btn{border:1px solid var(--gold);background:var(--gold);color:#161713;padding:13px 19px;font-size:11px;letter-spacing:.12em;font-weight:700;transition:.2s}.book-btn:hover{background:#e0c79c}
+.hero{position:relative;min-height:790px;height:100svh;max-height:1050px;display:flex;align-items:center;color:white;background:#272821;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(12,14,12,.72) 0%,rgba(12,14,12,.37) 52%,rgba(12,14,12,.12) 100%),linear-gradient(0deg,rgba(10,11,9,.55),transparent 38%),url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2400&q=90');background-size:cover;background-position:center}
+.hero-content{position:relative;z-index:1;width:min(760px,90%);margin-left:10%;padding-top:70px;animation:rise .9s ease both}
+.eyebrow{display:flex;align-items:center;gap:13px;color:var(--gold);font-size:11px;letter-spacing:.25em;text-transform:uppercase}.eyebrow:before{content:"";width:36px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(62px,9.5vw,138px);line-height:.92;letter-spacing:-.075em;margin:25px 0 26px;font-weight:600}.hero h1 span{display:block;font-size:.38em;letter-spacing:.24em;font-weight:400;margin-top:25px;color:#e8e1d4}
+.hero-copy{font-size:15px;line-height:1.9;color:rgba(255,255,255,.82);font-weight:300;max-width:420px;word-break:keep-all}
+.hero-actions{display:flex;align-items:center;gap:24px;margin-top:36px}.primary-cta{background:var(--gold);padding:17px 24px;color:#171815;font-size:11px;letter-spacing:.14em;font-weight:700;border:0}.text-cta{font-size:11px;letter-spacing:.14em;border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:8px}
+.hero-note{position:absolute;right:5.4%;bottom:44px;z-index:1;display:flex;gap:14px;align-items:center;color:rgba(255,255,255,.7);font-size:10px;letter-spacing:.16em}.hero-note span{display:block;width:44px;height:1px;background:var(--gold)}
+.booking-strip{position:relative;z-index:2;background:#fff;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr auto;align-items:center;padding:0 5.4%;box-shadow:0 16px 45px rgba(0,0,0,.07);min-height:116px}
+.booking-item{padding:20px 25px;border-right:1px solid #e7e4dc}.booking-item:first-child{padding-left:0}.booking-label{font-size:9px;color:#89877e;letter-spacing:.18em;text-transform:uppercase;margin-bottom:9px}.booking-value{font-size:14px;font-weight:600}.booking-value small{font-size:11px;font-weight:400;color:var(--muted)}
+.booking-strip .book-btn{margin-left:24px;white-space:nowrap;padding:17px 22px}
+.section{padding:120px 9%}.section-kicker{font-size:10px;letter-spacing:.23em;color:#9b8054;text-transform:uppercase;margin-bottom:18px}.section-title{font-size:clamp(36px,5vw,66px);line-height:1.12;letter-spacing:-.055em;font-weight:500;margin:0 0 24px}.section-title em{font-family:Georgia,serif;font-weight:400;color:#a68b60}.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:9%;align-items:center}.intro-copy{font-size:14px;line-height:2;color:#6e6d65;max-width:450px;word-break:keep-all}.signature{margin-top:30px;font-size:10px;letter-spacing:.2em;color:#8e754f}.intro-image{height:480px;position:relative;background:#d5d0c5;overflow:hidden}.intro-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}.intro-image:hover img{transform:scale(1.04)}.image-tag{position:absolute;left:20px;bottom:20px;background:rgba(20,21,18,.82);color:white;padding:12px 16px;font-size:9px;letter-spacing:.18em}
+.features{background:#191a16;color:#f6f3ec;padding:105px 9%}.features-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:55px}.features .section-title{margin:0}.features .section-kicker{color:var(--gold)}.features-note{color:#a8a69d;font-size:12px;line-height:1.8;max-width:260px}.amenity-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #3c3d35;border-left:1px solid #3c3d35}.amenity{padding:32px 27px;min-height:170px;border-right:1px solid #3c3d35;border-bottom:1px solid #3c3d35;transition:background .25s}.amenity:hover{background:#24251f}.amenity-icon{font-size:22px;color:var(--gold);margin-bottom:25px}.amenity h3{font-size:15px;font-weight:500;margin:0 0 9px}.amenity p{font-size:11px;color:#a8a69d;line-height:1.7;margin:0}.room{display:grid;grid-template-columns:1fr 1fr;min-height:520px;background:#e8e4da}.room-photo{min-height:430px;background:url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1400&q=85') center/cover}.room-copy{padding:80px 12%;align-self:center}.room-copy .section-title{font-size:clamp(35px,4vw,55px)}.room-copy p{font-size:13px;color:#6e6d65;line-height:2;max-width:410px}.room-meta{display:flex;gap:35px;margin:27px 0 30px}.room-meta strong{display:block;font-size:17px;font-weight:500}.room-meta span{display:block;font-size:9px;letter-spacing:.15em;color:#888579;margin-top:7px}.outline-btn{display:inline-block;border:1px solid #777365;padding:15px 20px;font-size:10px;letter-spacing:.13em;transition:.2s}.outline-btn:hover{background:#171815;color:#fff}
+.location{padding:110px 9%;display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center}.location-card{background:#e8e4da;padding:45px;position:relative}.location-card:before{content:"B";position:absolute;right:25px;top:0;font-size:160px;color:rgba(166,139,96,.12);font-family:Georgia,serif}.location-label{font-size:10px;letter-spacing:.2em;color:#9b8054}.location h3{font-size:28px;font-weight:500;margin:20px 0 12px;letter-spacing:-.04em}.location p{font-size:13px;line-height:1.9;color:#6e6d65}.location-address{border-top:1px solid #d2cdbf;padding-top:20px;margin-top:25px;font-size:12px;line-height:1.8}.location-address b{display:block;font-size:10px;letter-spacing:.15em;margin-bottom:7px}
+.quote{background:#c7ac7b;padding:82px 9%;text-align:center}.quote .quote-mark{font-family:Georgia,serif;font-size:60px;line-height:.8}.quote p{font-size:clamp(23px,3vw,38px);line-height:1.45;letter-spacing:-.04em;max-width:850px;margin:25px auto}.quote small{font-size:9px;letter-spacing:.22em}
+footer{background:#11120f;color:#f6f3ec;padding:55px 5.4% 28px}.footer-top{display:flex;justify-content:space-between;gap:30px;align-items:start;padding-bottom:45px;border-bottom:1px solid #33342d}.footer-brand{font-size:23px;letter-spacing:.15em;font-weight:700}.footer-brand small{display:block;font-size:9px;color:#9d9b90;letter-spacing:.2em;font-weight:400;margin-top:10px}.footer-links{display:flex;gap:28px;font-size:10px;letter-spacing:.1em;color:#c0beb5}.footer-bottom{display:flex;justify-content:space-between;gap:20px;padding-top:22px;font-size:9px;line-height:1.8;color:#85847b;letter-spacing:.04em}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:#171815;color:white;padding:15px 22px;font-size:12px;z-index:10;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 10px 35px #0003}.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:850px){.nav{display:none}.topbar{padding:18px 5%}.hero{min-height:720px}.hero-content{margin-left:7%;padding-top:65px}.hero h1{font-size:clamp(60px,15vw,100px)}.booking-strip{grid-template-columns:1fr 1fr;padding:10px 6%}.booking-item{padding:15px;border-bottom:1px solid #e7e4dc}.booking-item:first-child{padding-left:15px}.booking-strip .book-btn{margin:15px;grid-column:span 2}.section{padding:80px 7%}.intro-grid,.location{grid-template-columns:1fr;gap:38px}.intro-image{height:360px}.features{padding:80px 7%}.features-head{display:block}.features-note{margin-top:20px}.amenity-grid{grid-template-columns:repeat(2,1fr)}.room{grid-template-columns:1fr}.room-photo{min-height:350px}.room-copy{padding:60px 8%}.location-card{padding:35px}.footer-top,.footer-bottom{flex-direction:column}.footer-links{flex-wrap:wrap;gap:18px}}
+@media(max-width:480px){.brand{font-size:15px}.brand-mark{width:32px;height:32px}.topbar .book-btn{padding:11px 12px;font-size:9px}.hero{min-height:690px}.hero-content{width:88%;margin-left:6%}.hero-copy{font-size:13px}.hero-note{right:6%;bottom:25px}.booking-strip{padding:8px 4%}.booking-item{padding:13px 9px}.booking-item:first-child{padding-left:9px}.booking-value{font-size:12px}.amenity-grid{grid-template-columns:1fr 1fr}.amenity{padding:22px 15px;min-height:155px}.amenity h3{font-size:13px}.amenity p{font-size:10px}.quote{padding:65px 7%}.footer-links{font-size:9px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home" aria-label="빵빵호텔 홈"><span class="brand-mark">💩</span><span>BANG BANG HOTEL</span></a>
+  <nav class="nav"><a href="#story">The Story</a><a href="#amenities">Amenities</a><a href="#room">The Suite</a><a href="#location">Location</a></nav>
+  <a class="book-btn" href="#booking">RESERVATION ↗</a>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="eyebrow">A very distinguished stay</div>
+    <h1>BANG<br>BANG<span>HOTEL · SIGNATURE COLLECTION</span></h1>
+    <p class="hero-copy">일상은 잠시 체크아웃.<br>품격은 체크인. 상상 그 이상의 휴식이 시작되는 곳,<br><strong>빵빵호텔</strong>에 오신 것을 환영합니다.</p>
+    <div class="hero-actions"><a class="primary-cta" href="#booking">나의 스테이 예약하기 ↗</a><a class="text-cta" href="#story">호텔 둘러보기 ↓</a></div>
+  </div>
+  <div class="hero-note"><span></span> HAN KYUNG NATIONAL UNIVERSITY · 6F</div>
+</section>
+
+<section class="booking-strip" id="booking">
+  <div class="booking-item"><div class="booking-label">Destination</div><div class="booking-value">호연관 · 6층 <small>/ 한경국립대학교</small></div></div>
+  <div class="booking-item"><div class="booking-label">Check-in</div><div class="booking-value">언제든지 <small>가능할지도</small></div></div>
+  <div class="booking-item"><div class="booking-label">Check-out</div><div class="booking-value">현실이 부를 때</div></div>
+  <div class="booking-item"><div class="booking-label">Room type</div><div class="booking-value">Royal Poop Suite</div></div>
+  <button class="book-btn" onclick="showToast('예약 시스템 준비 중입니다. 프런트에 마음으로 문의해 주세요. 💩')">예약 문의 ↗</button>
+</section>
+
+<section class="section" id="story">
+  <div class="intro-grid">
+    <div>
+      <div class="section-kicker">01 / The art of staying</div>
+      <h2 class="section-title">머무는 순간,<br>일상이 <em>럭셔리</em>가 된다.</h2>
+      <p class="intro-copy">도시의 소음에서 한 걸음 떨어진 프라이빗한 공간. 빵빵호텔은 평범한 하루에도 특별한 이름을 붙여드립니다. 섬세한 서비스, 정돈된 휴식, 그리고 잊을 수 없는 시그니처 감성까지. 이곳에서는 체크인하는 순간부터 당신이 VIP입니다.</p>
+      <div class="signature">THE BANG BANG PROMISE · SINCE WHATEVER</div>
+    </div>
+    <div class="intro-image"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=85" alt="따뜻한 조명과 고급 침구가 있는 럭셔리 호텔 객실"><div class="image-tag">A ROOM OF YOUR OWN</div></div>
+  </div>
+</section>
+
+<section class="features" id="amenities">
+  <div class="features-head">
+    <div><div class="section-kicker">02 / Thoughtful essentials</div><h2 class="section-title">작은 것까지,<br><em>완벽하게.</em></h2></div>
+    <p class="features-note">숙박의 품격은 디테일에서 시작됩니다.<br>빵빵호텔의 엄선된 기본 어메니티를 만나보세요.</p>
+  </div>
+  <div class="amenity-grid">
+    <article class="amenity"><div class="amenity-icon">✳</div><h3>프리미엄 샴푸</h3><p>하루의 피로를 씻어내는 산뜻한 클렌징 케어.</p></article>
+    <article class="amenity"><div class="amenity-icon">♨</div><h3>로카티</h3><p>호텔 스테이의 완성. 정체가 궁금한 시그니처 아이템.</p></article>
+    <article class="amenity"><div class="amenity-icon">▱</div><h3>컴포트 침대</h3><p>몸과 마음을 내려놓는 포근한 휴식의 중심.</p></article>
+    <article class="amenity"><div class="amenity-icon">≋</div><h3>호텔 타월</h3><p>샤워 후에도 이어지는 부드럽고 뽀송한 감촉.</p></article>
+    <article class="amenity"><div class="amenity-icon">✧</div><h3>바디로션</h3><p>피부에 촉촉함을 더하는 마무리 루틴.</p></article>
+    <article class="amenity"><div class="amenity-icon">◌</div><h3>폼클렌징</h3><p>하루의 흔적을 깨끗하게 씻어내는 페이스 케어.</p></article>
+  </div>
+</section>
+
+<section class="room" id="room">
+  <div class="room-photo" role="img" aria-label="럭셔리 호텔 침실"></div>
+  <div class="room-copy">
+    <div class="section-kicker">03 / The signature suite</div>
+    <h2 class="section-title">Royal Poop<br><em>Suite.</em></h2>
+    <p>빵빵호텔의 시그니처 객실. 세련된 무드와 편안함을 한 공간에 담았습니다. 이름은 강렬하지만, 휴식은 진지하게.</p>
+    <div class="room-meta"><div><strong>★★★★★</strong><span>FIVE-STAR ATTITUDE</span></div><div><strong>1 / 1</strong><span>EXCLUSIVE LOCATION</span></div></div>
+    <a class="outline-btn" href="#location">객실 위치 확인하기 ↗</a>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div>
+    <div class="section-kicker">04 / Find your sanctuary</div>
+    <h2 class="section-title">멀리 갈 필요 없이,<br><em>6층에서 만나는</em><br>특별한 세계.</h2>
+    <p class="intro-copy">빵빵호텔은 한경국립대학교 호연관 6층에 자리한 콘셉트 호텔입니다. 익숙한 건물 안에서 발견하는 뜻밖의 럭셔리. 지도보다 먼저 설레는 마음으로 찾아오세요.</p>
+  </div>
+  <div class="location-card">
+    <div class="location-label">THE ADDRESS</div>
+    <h3>빵빵호텔 · 호연관점</h3>
+    <p>BANG BANG HOTEL<br>Signature Residence</p>
+    <div class="location-address"><b>LOCATION</b>한경국립대학교 호연관 6층<br><b style="margin-top:14px">SIGNATURE AMENITIES</b>샴푸 · 로카티 · 침대 · 수건 · 바디로션 · 폼클렌징</div>
+  </div>
+</section>
+
+<section class="quote"><div class="quote-mark">“</div><p>세상에는 수많은 호텔이 있지만,<br>당신의 마음에 체크인하는 호텔은 하나입니다.</p><small>WELCOME TO BANG BANG HOTEL</small></section>
+</main>
+
+<footer>
+  <div class="footer-top"><div class="footer-brand">💩 BANG BANG HOTEL<small>THE MOST DISTINGUISHED STAY IN THE BUILDING.</small></div><div class="footer-links"><a href="#story">OUR STORY</a><a href="#amenities">AMENITIES</a><a href="#room">THE SUITE</a><a href="#location">LOCATION</a></div></div>
+  <div class="footer-bottom"><span>© 2026 BANG BANG HOTEL. ALL RIGHTS RESERVED.</span><span>본 사이트는 유쾌한 콘셉트로 제작된 가상 호텔 홈페이지입니다.</span></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+let toastTimer;
+function showToast(message){
+  const toast=document.getElementById('toast');
+  toast.textContent=message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove('show'),3200);
+}
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+  link.addEventListener('click',event=>{
+    const target=document.querySelector(link.getAttribute('href'));
+    if(target){event.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
