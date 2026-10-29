@@ -1,1 +1,182 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b13">
+<title>WARP DRIVE — 대한민국 공간 이동국</title>
+<style>
+:root{--bg:#080b13;--panel:#101723;--panel2:#151f2d;--line:#35475c;--cream:#f1e7cf;--muted:#9aa9b8;--amber:#ffb84d;--cyan:#71e6ed;--red:#ff695f;--green:#9bffbd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#f2f4f7;font-family:Inter,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 75% 10%,#263448 0,transparent 40%),radial-gradient(ellipse at 10% 75%,#142332 0,transparent 45%),#080b13}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
+header{height:72px;padding:0 5vw;display:flex;align-items:center;gap:30px;border-bottom:1px solid #ffffff18;background:#090d15e8;backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:2px;font-size:19px;white-space:nowrap}.brand-mark{width:28px;height:28px;border:2px solid var(--amber);border-radius:50%;display:grid;place-items:center;box-shadow:0 0 14px #ffb84d42}.brand-mark:after{content:"";width:8px;height:8px;background:var(--amber);border-radius:50%;box-shadow:0 0 10px var(--amber)}
+.brand small{display:block;font-size:8px;letter-spacing:2.2px;color:#9cabb9;font-weight:600;margin-top:3px}
+nav{display:flex;gap:25px}nav a{color:#aeb9c6;text-decoration:none;font-size:12px}nav a:hover{color:var(--amber)}
+.header-status{margin-left:auto;display:flex;align-items:center;gap:9px;font-size:10px;color:#b4c4d3;letter-spacing:1px}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px var(--green);animation:blink 1.5s infinite}
+main{max-width:1450px;margin:auto;padding:27px 5vw 46px}.eyebrow{font-size:10px;letter-spacing:2.3px;color:var(--amber);font-weight:800}.intro{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}.intro h1{font-size:clamp(30px,4vw,48px);letter-spacing:-1.8px;margin:10px 0 7px;line-height:1.12}.intro h1 span{color:var(--amber)}.intro p{margin:0;color:#9cabb9;font-size:13px;line-height:1.7}.clockbox{text-align:right;white-space:nowrap;color:#8998a9;font-size:10px;letter-spacing:1px}.clockbox strong{display:block;color:#f5e8cb;font-size:22px;letter-spacing:0;margin:5px 0}
+.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(310px,.8fr);gap:16px}.panel{background:linear-gradient(145deg,#141e2b,#0d131d);border:1px solid #ffffff20;border-radius:13px;box-shadow:0 14px 35px #0003}.panel-head{padding:17px 19px;border-bottom:1px solid #ffffff13;display:flex;align-items:center;justify-content:space-between}.panel-head h2{margin:0;font-size:14px;font-weight:750}.panel-head small{font-size:10px;color:#8193a5;letter-spacing:1px}.route-form{padding:18px 19px 20px}.field-label{display:block;color:#9baaba;font-size:11px;margin:0 0 8px}.select-row{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:end}.select-wrap{position:relative}.select-wrap select{appearance:none;width:100%;height:48px;padding:0 36px 0 13px;border-radius:8px;background:#080e17;border:1px solid #3a4b5d;color:#f2f5f7;font:inherit;font-size:13px;outline:none}.select-wrap:after{content:"⌄";position:absolute;right:13px;top:12px;color:var(--amber);pointer-events:none}.swap{height:48px;border:1px solid #4b5b6c;border-radius:8px;background:#202b38;color:var(--amber);font-size:18px;cursor:pointer}.swap:hover{background:#2a3848}.route-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:14px 0 17px;color:#91a1b0;font-size:11px}.route-meta b{color:#e7eaf0;font-weight:650}.route-meta .tag{color:var(--cyan);border:1px solid #71e6ed44;padding:4px 8px;border-radius:4px}
+.primary{width:100%;height:48px;border:1px solid #ffd083;border-radius:8px;background:linear-gradient(100deg,#c87b27,#ffbf57);color:#15120d;font-size:13px;font-weight:900;letter-spacing:.2px;cursor:pointer;box-shadow:0 5px 18px #ffb84d17;transition:.2s}.primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px #ffb84d2c}.primary:disabled{opacity:.55;cursor:wait;transform:none}
+.right-stack{display:grid;gap:16px;align-content:start}.destination-preview{padding:19px;position:relative;overflow:hidden;min-height:190px;background:linear-gradient(125deg,#172b3b,#101621 65%)}.destination-preview:after{content:"";position:absolute;right:-35px;bottom:-70px;width:220px;height:220px;border:1px solid #ffbd5b36;border-radius:50%;box-shadow:0 0 0 18px #ffbd5b08,0 0 0 38px #ffbd5b06}.dest-top{display:flex;justify-content:space-between;gap:12px;position:relative;z-index:1}.dest-top h2{margin:8px 0 4px;font-size:25px;letter-spacing:-.7px}.dest-top p{margin:0;color:#9babb8;font-size:11px}.dest-icon{font-size:33px;filter:drop-shadow(0 0 12px #ffb84d22)}.dest-coords{display:flex;gap:20px;margin-top:24px;position:relative;z-index:1}.dest-coords span{font-size:9px;color:#8395a7;letter-spacing:1px}.dest-coords b{display:block;color:#e4e8ec;font-size:12px;letter-spacing:0;margin-top:5px}
+.map-panel{padding:16px 18px}.map-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.map-head h2{font-size:13px;margin:0}.map-head span{font-size:10px;color:#7f91a3}.schematic{height:160px;border:1px solid #ffffff13;border-radius:8px;position:relative;overflow:hidden;background:linear-gradient(0deg,transparent 24%,#ffffff08 25%,transparent 26%,transparent 74%,#ffffff08 75%,transparent 76%),linear-gradient(90deg,transparent 24%,#ffffff08 25%,transparent 26%,transparent 74%,#ffffff08 75%,transparent 76%),#0b131e;background-size:40px 40px}.schematic svg{width:100%;height:100%;position:absolute;inset:0}.map-label{position:absolute;background:#111e2b;border:1px solid #46586a;padding:4px 6px;border-radius:4px;font-size:9px;color:#cbd5df;white-space:nowrap}.map-label.start{left:7%;bottom:22%;border-color:#71e6ed;color:var(--cyan)}.map-label.end{right:7%;top:17%;border-color:var(--amber);color:var(--amber)}.map-note{margin-top:10px;display:flex;justify-content:space-between;color:#8193a4;font-size:10px}
+.locations{margin-top:20px}.section-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}.section-title h2{font-size:16px;margin:0}.section-title p{font-size:11px;color:#899bac;margin:5px 0 0}.location-search{background:#101a27;border:1px solid #ffffff20;border-radius:7px;padding:9px 12px;color:white;font:inherit;font-size:11px;width:220px;outline:none}.location-search:focus{border-color:#ffbd5b88}
+.location-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.location{padding:13px 12px;min-height:91px;text-align:left;cursor:pointer;transition:.2s;position:relative;overflow:hidden}.location:hover,.location.chosen{border-color:#ffbd5b99;transform:translateY(-2px);background:linear-gradient(145deg,#26303b,#111923)}.location.chosen:after{content:"SELECTED";position:absolute;right:9px;top:10px;color:var(--amber);font-size:7px;letter-spacing:1px}.location .emoji{font-size:20px;display:block;margin-bottom:10px}.location strong{display:block;font-size:12px;margin-bottom:4px}.location small{color:#8799aa;font-size:10px}
+.transit-info{margin-top:18px;display:grid;grid-template-columns:1.3fr 1fr;gap:14px}.steps{padding:17px 19px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.step{display:flex;align-items:center;gap:8px;color:#8798a9;font-size:10px;line-height:1.5}.step i{font-style:normal;width:30px;height:30px;display:grid;place-items:center;border:1px solid #ffffff26;border-radius:50%;color:#91a3b4;flex-shrink:0}.step.active i{color:var(--amber);border-color:#ffbd5b;box-shadow:0 0 13px #ffb84d22}.system{padding:17px 19px;display:flex;justify-content:space-between;align-items:center}.system .big{font-size:22px;font-weight:800;margin:7px 0}.system p{margin:0;font-size:10px;color:#91a1b0}.system .radar{width:56px;height:56px;border:1px solid #71e6ed88;border-radius:50%;display:grid;place-items:center;color:var(--cyan);position:relative}.radar:before{content:"";position:absolute;inset:7px;border:1px dashed #71e6ed88;border-radius:50%;animation:spin 10s linear infinite}.radar:after{content:"";position:absolute;width:4px;height:4px;background:var(--cyan);border-radius:50%;box-shadow:0 0 10px var(--cyan)}
+footer{margin-top:28px;padding-top:15px;border-top:1px solid #ffffff17;display:flex;justify-content:space-between;gap:12px;color:#66798d;font-size:9px;letter-spacing:.5px}
+.toast{position:fixed;z-index:60;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:13px 18px;border:1px solid #ffbd5b88;border-radius:9px;background:#111923;box-shadow:0 10px 35px #0009;transition:.25s;text-align:center;min-width:260px}.toast.show{opacity:1;transform:translate(-50%,0)}.toast strong{display:block;font-size:12px;margin-bottom:4px}.toast span{font-size:10px;color:#9caebe}
+.overlay{position:fixed;inset:0;z-index:50;display:none;place-items:center;background:#050912f5;backdrop-filter:blur(15px);padding:20px;text-align:center}.overlay.show{display:grid}.time-core{width:140px;height:140px;border:1px solid var(--amber);border-radius:50%;margin:0 auto 24px;display:grid;place-items:center;color:var(--amber);font-size:36px;position:relative;box-shadow:0 0 35px #ffb84d24,inset 0 0 35px #ffb84d12;animation:corePulse 1.8s infinite}.time-core:before,.time-core:after{content:"";position:absolute;inset:-12px;border:1px solid #71e6ed88;border-radius:50%;animation:spin 5s linear infinite}.time-core:after{inset:-23px;border-color:#ffbd5b55;animation-direction:reverse;animation-duration:8s}@keyframes corePulse{50%{box-shadow:0 0 55px #ffb84d50,inset 0 0 40px #ffb84d22;transform:scale(1.03)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes blink{50%{opacity:.25}}.overlay h2{font-size:24px;margin:0 0 8px}.overlay p{font-size:12px;color:#9eacba}.progress{height:4px;width:min(350px,80vw);background:#26313c;border-radius:9px;overflow:hidden;margin:22px auto 9px}.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--amber),var(--cyan));box-shadow:0 0 15px var(--amber);transition:width .12s}.percent{color:var(--amber);font-size:11px}.cancel{margin-top:20px;background:transparent;color:#b6c1cc;border:1px solid #ffffff30;border-radius:7px;padding:10px 17px;cursor:pointer}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.right-stack{grid-template-columns:1fr 1fr}.location-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.transit-info{grid-template-columns:1fr}.hero{min-height:unset}}
+@media(max-width:700px){header{height:62px;padding:0 4%;gap:12px}.brand{font-size:16px;letter-spacing:1.5px}nav{display:none}.header-status{font-size:8px}.header-status span:last-child{display:none}main{padding:22px 4% 35px}.intro{align-items:start}.intro h1{font-size:34px}.intro p{font-size:12px}.clockbox{display:none}.right-stack{grid-template-columns:1fr}.location-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.location{min-height:85px}.location-search{width:130px}.section-title{gap:12px;align-items:center}.steps{grid-template-columns:repeat(2,1fr);gap:13px}.step{padding:4px 0}.select-row{grid-template-columns:1fr 38px 1fr;gap:6px}.select-wrap select{padding-left:9px;font-size:11px}.swap{font-size:15px}.route-form{padding:15px}.route-meta{font-size:10px}.dest-top h2{font-size:23px}footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
+/* refined, calm Apple-like controls + cinematic arrival scene */
+:root{--amber:#d6a65e;--cyan:#a8dfe5}
+body:before{background:radial-gradient(ellipse at 78% 0%,#263747 0,transparent 38%),linear-gradient(180deg,#0a1018,#070a10 65%,#090d13)}
+header{background:#0a0e14df}
+.panel{border-radius:18px;background:linear-gradient(145deg,#151d27,#0e141c);border-color:#ffffff17;box-shadow:0 12px 35px #0002}
+.primary{border:0;border-radius:999px;background:#f2f3f5;color:#111821;box-shadow:none}
+.primary:hover{background:#fff;box-shadow:0 5px 22px #ffffff15}
+.secondary,.swap{border-radius:999px}
+.select-wrap select,.location-search{border-radius:11px;background:#0b1119;border-color:#ffffff20}
+.location{border-radius:14px;background:linear-gradient(145deg,#151e28,#0d131c)}
+.location:hover,.location.chosen{background:#1b2632;border-color:#d6a65e88}
+.location.chosen:after{content:"선택됨";letter-spacing:0;font-size:9px}
+.destination-preview{border-radius:18px}
+.arrival-scene{position:relative;isolation:isolate;min-height:310px;border-radius:18px;overflow:hidden;margin-top:18px;border:1px solid #ffffff24;background:#101a27;display:none}
+.arrival-scene.show{display:block;animation:arriveIn .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes arriveIn{from{opacity:0;transform:scale(.97);filter:blur(8px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
+.arrival-art{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#172b43,#3b5366 48%,#111d27)}
+.arrival-art:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#071018eF 0%,#07101822 60%,#07101835 100%);z-index:2}
+.arrival-art:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,#f4c77c20,transparent 55%);z-index:1}
+.scene-skyline{position:absolute;bottom:0;left:0;right:0;height:70%;display:flex;align-items:end;justify-content:center;gap:clamp(3px,1vw,12px);padding:0 6%;z-index:1}
+.scene-skyline i{display:block;position:relative;width:8%;height:var(--h,45%);background:linear-gradient(90deg,#101b28,#304252);border-top:1px solid #d5c09288;box-shadow:inset 0 0 15px #0005}
+.scene-skyline i:after{content:"";position:absolute;inset:8px 4px;background:repeating-linear-gradient(0deg,#f5dba9 0 2px,transparent 2px 11px);opacity:.25}
+.scene-skyline i:nth-child(3n){width:5%}
+.scene-skyline i.tower{width:5%;height:90%;clip-path:polygon(48% 0,55% 10%,70% 16%,65% 22%,78% 100%,20% 100%,34% 22%,28% 16%,43% 10%);background:linear-gradient(90deg,#25394b,#82909a)}
+.scene-ground{position:absolute;left:0;right:0;bottom:0;height:24%;z-index:2;background:linear-gradient(180deg,#182430,#080e15);border-top:1px solid #ffffff25}
+.arrival-content{position:relative;z-index:4;padding:23px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}
+.arrival-content h2{font-size:clamp(27px,4vw,44px);letter-spacing:-1.5px;margin:9px 0 4px}
+.arrival-content p{font-size:12px;color:#d3dce4;margin:0}
+.arrival-bottom{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap}
+.arrival-bottom small{display:block;color:#c2ced8;font-size:10px;letter-spacing:1px;margin-bottom:5px}
+.arrival-bottom strong{font-size:12px}
+.arrival-badge{padding:8px 11px;border-radius:999px;border:1px solid #ffffff48;background:#07101880;font-size:10px;backdrop-filter:blur(12px)}
+.dismiss-arrival{border:1px solid #ffffff48;border-radius:999px;padding:10px 15px;color:#fff;background:#0a121bcc;cursor:pointer}
+@media(max-width:700px){.arrival-scene,.arrival-content{min-height:260px}.arrival-content{padding:17px}.location-search{width:145px}}
+
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<header><div class="brand"><span class="brand-mark"></span><div>WARP DRIVE<small>KOREA SPATIAL TRANSIT</small></div></div><nav><a href="#route">경로 설정</a><a href="#places">장소 데이터베이스</a><a href="#system">시스템</a></nav><div class="header-status"><i class="status-dot"></i><span>CORE ONLINE</span></div></header>
+<main>
+  <div class="intro"><div><div class="eyebrow">KOREA · SPATIAL TRANSIT AUTHORITY</div><h1>시간과 거리를 접다.<br><span>다음 순간으로.</span></h1><p>출발지를 지정하고 목적지를 고르세요.<br>공간 점프 시퀀스를 준비합니다.</p></div><div class="clockbox">LOCAL TIME<strong id="clock">00:00:00</strong><span id="dateLine">KOREA STANDARD TIME</span></div></div>
+  <div class="layout">
+    <section class="panel" id="route"><div class="panel-head"><h2>01　이동 경로 설정</h2><small>ROUTE CONFIGURATION</small></div><div class="route-form">
+      <div class="select-row">
+        <div class="select-wrap"><label class="field-label" for="start">출발 지점</label><select id="start"></select></div>
+        <button class="swap" id="swap" title="출발지와 목적지 바꾸기">⇄</button>
+        <div class="select-wrap"><label class="field-label" for="end">도착 목적지</label><select id="end"></select></div>
+      </div>
+      <div class="route-meta"><span>경로 유형　<b id="routeType">도시 간 공간 점프</b></span><span>예상 절약 시간　<b id="savedTime">약 48분</b></span><span class="tag" id="distance">좌표 연결 대기</span></div>
+      <button class="primary" id="startWarp">⟡　공간 점프 시퀀스 시작</button>
+    </div></section>
+    <div class="right-stack">
+      <section class="panel destination-preview"><div class="dest-top"><div><div class="eyebrow">DESTINATION LOCK</div><h2 id="previewName">킨텍스</h2><p id="previewAddress">경기도 고양시 일산서구</p></div><div class="dest-icon" id="previewIcon">✦</div></div><div class="dest-coords"><div><span>LATITUDE</span><b id="lat">37.667° N</b></div><div><span>LONGITUDE</span><b id="lon">126.745° E</b></div><div><span>GATE STATUS</span><b style="color:var(--green)">READY</b></div></div></section>
+      <section class="panel map-panel"><div class="map-head"><h2>경로 홀로맵</h2><span>SCHEMATIC VIEW / NOT TO SCALE</span></div><div class="schematic"><svg viewBox="0 0 400 160" preserveAspectRatio="none" aria-label="개략 경로 지도"><path id="routeGlow" d="M35 125 Q110 15 200 85 T365 35" fill="none" stroke="#ffb84d" stroke-width="7" opacity=".09"/><path id="routeLine" d="M35 125 Q110 15 200 85 T365 35" fill="none" stroke="#ffbd5b" stroke-width="1.8" stroke-dasharray="5 5"/><circle id="startPoint" cx="35" cy="125" r="5" fill="#71e6ed"/><circle id="endPoint" cx="365" cy="35" r="5" fill="#ffbd5b"/><circle cx="35" cy="125" r="10" fill="none" stroke="#71e6ed" opacity=".5"/><circle cx="365" cy="35" r="10" fill="none" stroke="#ffbd5b" opacity=".5"/></svg><span class="map-label start" id="mapStart">출발</span><span class="map-label end" id="mapEnd">도착</span></div><div class="map-note"><span>⌖ 좌표 기반 경로 시각화</span><span id="mapStatus">링크 대기 중</span></div></section>
+    </div>
+  </div>
+  <section class="locations" id="places"><div class="section-title"><div><h2>대한민국 목적지 데이터베이스</h2><p>장소 카드를 눌러 출발지 또는 목적지로 지정할 수 있습니다.</p></div><input class="location-search" id="placeSearch" placeholder="장소 검색 · 예: 서울역"></div><div class="location-grid" id="locationGrid"></div></section>
+  <section class="arrival-scene" id="arrivalScene" aria-live="polite">
+  <div class="arrival-art" id="arrivalArt"><div class="scene-skyline" id="sceneSkyline"><i style="--h:35%"></i><i style="--h:55%"></i><i class="tower"></i><i style="--h:48%"></i><i style="--h:68%"></i><i style="--h:42%"></i><i style="--h:58%"></i><i style="--h:33%"></i></div><div class="scene-ground"></div></div>
+  <div class="arrival-content"><div><div class="eyebrow">ARRIVAL CONFIRMED · DESTINATION VIEW</div><h2 id="arrivalTitle">서울역에 도착했습니다.</h2><p id="arrivalSubtitle">새로운 장소의 풍경을 확인하세요.</p></div><div class="arrival-bottom"><div><small>DESTINATION COORDINATES</small><strong id="arrivalCoords">37.554° N · 126.970° E</strong></div><div class="arrival-badge">✓ 가상 공간 점프 완료</div><button class="dismiss-arrival" id="dismissArrival" type="button">경로 설정으로 돌아가기 ↑</button></div></div>
+</section>
+<section class="transit-info" id="system"><div class="panel steps"><div class="step active" data-step="0"><i>01</i><span>좌표 설정<br>ROUTE LOCK</span></div><div class="step" data-step="1"><i>02</i><span>시간축 계산<br>TIME SYNC</span></div><div class="step" data-step="2"><i>03</i><span>공간장 형성<br>FIELD CHARGE</span></div><div class="step" data-step="3"><i>04</i><span>공간 점프<br>WARP EXECUTE</span></div></div><div class="panel system"><div><div class="eyebrow">WARP CORE</div><div class="big" id="systemState">대기 상태</div><p id="systemDesc">출발지와 목적지를 설정하면 준비됩니다.</p></div><div class="radar">⌖</div></div></section>
+  <footer><span>WARP DRIVE / KOREA SPATIAL TRANSIT INTERFACE</span><span>Fictional teleportation simulator · 실제 이동이나 위치 변경은 발생하지 않습니다.</span></footer>
+</main>
+<div class="toast" id="toast"><strong id="toastTitle">경로 업데이트</strong><span id="toastText">좌표가 설정되었습니다.</span></div>
+<div class="overlay" id="overlay"><div><div class="time-core" id="timeCore">⟡</div><div class="eyebrow" id="warpEyebrow">TEMPORAL COORDINATES LOCKING</div><h2 id="warpTitle">시간축을 정렬하는 중...</h2><p id="warpText">출발지와 목적지 사이의 공간장을 계산하고 있습니다.</p><div class="progress"><span id="progressBar"></span></div><div class="percent" id="progressLabel">0%</div><button class="cancel" id="cancelBtn">시퀀스 중단</button></div></div>
+<script>
+const places=[
+{id:"hknu",name:"한경국립대",area:"경기도 안성시",detail:"한경국립대학교",icon:"🎓",lat:37.010,lon:127.267,scene:"campus"},
+{id:"kintex",name:"킨텍스",area:"경기도 고양시 일산서구",detail:"KINTEX 전시장",icon:"🏟️",lat:37.667,lon:126.745,scene:"expo"},
+{id:"seoul-station",name:"서울역",area:"서울특별시 중구",detail:"서울역 교통 허브",icon:"🚄",lat:37.554,lon:126.970,scene:"station"},
+{id:"hugok",name:"후곡마을",area:"경기도 고양시 일산서구",detail:"일산 후곡마을",icon:"🏘️",lat:37.679,lon:126.767,scene:"neighborhood"},
+{id:"hongdae",name:"홍대입구",area:"서울특별시 마포구",detail:"홍대입구역·거리",icon:"🎸",lat:37.557,lon:126.925,scene:"night"},
+{id:"gangnam",name:"강남역",area:"서울특별시 강남구",detail:"강남역 교차로",icon:"🌃",lat:37.498,lon:127.028,scene:"city"},
+{id:"gwanghwamun",name:"광화문",area:"서울특별시 종로구",detail:"광화문 광장",icon:"🏛️",lat:37.572,lon:126.976,scene:"palace"},
+{id:"incheon",name:"인천국제공항",area:"인천광역시 중구",detail:"인천국제공항",icon:"✈️",lat:37.460,lon:126.440,scene:"airport"},
+{id:"busan",name:"부산역",area:"부산광역시 동구",detail:"부산역 KTX 허브",icon:"🌊",lat:35.115,lon:129.041,scene:"coast"},
+{id:"daejeon",name:"대전역",area:"대전광역시 동구",detail:"대전역 교통 허브",icon:"🚉",lat:36.332,lon:127.435,scene:"station"},
+{id:"daegu",name:"동대구역",area:"대구광역시 동구",detail:"동대구역 KTX 허브",icon:"🏙️",lat:35.879,lon:128.628,scene:"city"},
+{id:"jeju",name:"제주국제공항",area:"제주특별자치도 제주시",detail:"제주국제공항",icon:"🌴",lat:33.511,lon:126.493,scene:"island"},
+{id:"suwon",name:"수원역",area:"경기도 수원시",detail:"수원역 환승 허브",icon:"🚆",lat:37.266,lon:126.999,scene:"station"},
+{id:"paju",name:"임진각",area:"경기도 파주시",detail:"임진각 평화누리",icon:"🌾",lat:37.888,lon:126.741,scene:"field"},
+{id:"namsan",name:"남산서울타워",area:"서울특별시 용산구",detail:"N서울타워 전망대",icon:"🗼",lat:37.551,lon:126.988,scene:"tower"},
+{id:"yeouido",name:"여의도 한강공원",area:"서울특별시 영등포구",detail:"한강과 여의도 스카이라인",icon:"🌉",lat:37.528,lon:126.932,scene:"river"},
+{id:"jamsil",name:"잠실 롯데월드타워",area:"서울특별시 송파구",detail:"롯데월드타워 전망 구역",icon:"🏙️",lat:37.512,lon:127.102,scene:"tower"},
+{id:"seongsu",name:"성수동",area:"서울특별시 성동구",detail:"성수 카페거리",icon:"☕",lat:37.544,lon:127.056,scene:"night"},
+{id:"itaewon",name:"이태원",area:"서울특별시 용산구",detail:"이태원 거리",icon:"🌆",lat:37.534,lon:126.994,scene:"night"},
+{id:"coex",name:"코엑스",area:"서울특별시 강남구",detail:"코엑스·별마당도서관",icon:"✨",lat:37.512,lon:127.059,scene:"expo"},
+{id:"seoulforest",name:"서울숲",area:"서울특별시 성동구",detail:"서울숲 공원",icon:"🌳",lat:37.544,lon:127.037,scene:"park"},
+{id:"lotteworld",name:"롯데월드",area:"서울특별시 송파구",detail:"롯데월드 어드벤처",icon:"🎡",lat:37.511,lon:127.098,scene:"park"},
+{id:"everland",name:"에버랜드",area:"경기도 용인시",detail:"에버랜드 테마파크",icon:"🎢",lat:37.294,lon:127.202,scene:"park"},
+{id:"suwonhwaseong",name:"수원화성",area:"경기도 수원시",detail:"수원화성 행궁 구역",icon:"🏯",lat:37.287,lon:127.011,scene:"palace"},
+{id:"anyang",name:"안양역",area:"경기도 안양시",detail:"안양역 중심가",icon:"🚉",lat:37.401,lon:126.922,scene:"station"},
+{id:"pangyo",name:"판교 테크노밸리",area:"경기도 성남시",detail:"판교 업무·테크 지구",icon:"💻",lat:37.402,lon:127.108,scene:"city"},
+{id:"sokcho",name:"속초해변",area:"강원특별자치도 속초시",detail:"속초 해변과 동해",icon:"🏖️",lat:38.198,lon:128.602,scene:"coast"},
+{id:"gangneung",name:"강릉역",area:"강원특별자치도 강릉시",detail:"강릉역·동해안",icon:"🌊",lat:37.764,lon:128.899,scene:"coast"},
+{id:"jeonju",name:"전주한옥마을",area:"전북특별자치도 전주시",detail:"전주 한옥마을",icon:"🏡",lat:35.815,lon:127.153,scene:"village"},
+{id:"gyeongju",name:"경주 첨성대",area:"경상북도 경주시",detail:"첨성대와 역사 유적",icon:"🌙",lat:35.834,lon:129.219,scene:"historic"},
+{id:"gwangalli",name:"광안리 해수욕장",area:"부산광역시 수영구",detail:"광안대교와 해변",icon:"🌉",lat:35.153,lon:129.118,scene:"coast"},
+{id:"haeundae",name:"해운대",area:"부산광역시 해운대구",detail:"해운대 해변과 마천루",icon:"🏖️",lat:35.158,lon:129.160,scene:"coast"},
+{id:"yeosu",name:"여수 해상케이블카",area:"전라남도 여수시",detail:"여수 바다 전망",icon:"🚠",lat:34.736,lon:127.746,scene:"coast"},
+{id:"mokpo",name:"목포역",area:"전라남도 목포시",detail:"목포역과 항구",icon:"🚉",lat:34.791,lon:126.388,scene:"coast"},
+{id:"jeju-seogwipo",name:"서귀포 정방폭포",area:"제주특별자치도 서귀포시",detail:"정방폭포 해안",icon:"💧",lat:33.244,lon:126.571,scene:"island"}
+]
+const $=id=>document.getElementById(id);let timer=null,busy=false,cancelRequested=false;
+function populateSelects(){const opts=places.map(p=>`<option value="${p.id}">${p.name} · ${p.area}</option>`).join("");$("start").innerHTML=opts;$("end").innerHTML=opts;$("start").value="hugok";$("end").value="kintex";updateRoute()}
+function getPlace(id){return places.find(p=>p.id===id)||places[0]}
+function updateRoute(){const a=getPlace($("start").value),b=getPlace($("end").value);$("previewName").textContent=b.name;$("previewAddress").textContent=b.area+" · "+b.detail;$("previewIcon").textContent=b.icon;$("lat").textContent=b.lat.toFixed(3)+"° N";$("lon").textContent=b.lon.toFixed(3)+"° E";$("mapStart").textContent=a.name;$("mapEnd").textContent=b.name;const d=Math.round(Math.hypot((a.lat-b.lat)*111,(a.lon-b.lon)*88));$("distance").textContent="직선 거리 약 "+d+" km";$("savedTime").textContent=d<10?"약 12분":d<40?"약 35분":d<100?"약 1시간 10분":d<250?"약 2시간":"약 3시간";$("routeType").textContent=a.area===b.area?"지역 내 공간 점프":"도시 간 공간 점프";$("mapStatus").textContent=a.id===b.id?"동일 좌표":"경로 연결 준비";$("startPoint").setAttribute("cx",35+Math.abs(a.lon%10)*5);$("endPoint").setAttribute("cx",330+Math.abs(b.lat%10)*3);$("routeLine").setAttribute("stroke-dashoffset",String(Date.now()%30));$("systemState").textContent=a.id===b.id?"동일 좌표":"경로 설정 완료";$("systemDesc").textContent=a.id===b.id?"출발지와 목적지가 같습니다.":"출발: "+a.name+" → 도착: "+b.name;renderPlaces();setStep(0)}
+function setStep(n){document.querySelectorAll(".step").forEach((e,i)=>e.classList.toggle("active",i===n))}
+function renderPlaces(){const q=$("placeSearch").value.trim().toLowerCase();const arr=places.filter(p=>(p.name+" "+p.area+" "+p.detail).toLowerCase().includes(q));$("locationGrid").innerHTML=arr.map(p=>`<button class="location panel ${p.id===$("start").value||p.id===$("end").value?"chosen":""}" data-id="${p.id}"><span class="emoji">${p.icon}</span><strong>${p.name}</strong><small>${p.area}</small></button>`).join("");document.querySelectorAll(".location").forEach(el=>el.addEventListener("click",()=>{const id=el.dataset.id;if(document.activeElement===$("start"))$("start").value=id;else if(document.activeElement===$("end"))$("end").value=id;else $("end").value=id;updateRoute();$("arrivalScene").classList.remove("show");toast("목적지 업데이트",getPlace(id).name+"을(를) 도착 목적지로 설정했습니다.")}))}
+function toast(title,msg){$("toastTitle").textContent=title;$("toastText").textContent=msg;$("toast").classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>$("toast").classList.remove("show"),2600)}
+function clock(){const d=new Date();$("clock").textContent=d.toLocaleTimeString("ko-KR",{hour12:false});$("dateLine").textContent=d.toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric",weekday:"short"})+" · KST"}
+$("start").addEventListener("change",updateRoute);$("end").addEventListener("change",updateRoute);$("swap").addEventListener("click",()=>{const x=$("start").value;$("start").value=$("end").value;$("end").value=x;updateRoute();toast("경로 반전","출발지와 목적지를 서로 바꿨습니다.")});$("placeSearch").addEventListener("input",renderPlaces);
+function startWarp(){if(busy)return;if($("start").value===$("end").value){toast("경로 확인 필요","출발지와 목적지를 서로 다르게 설정해 주세요.");return}busy=true;cancelRequested=false;$("overlay").classList.add("show");$("startWarp").disabled=true;const stages=[["시간축 정렬","출발지와 목적지의 좌표를 잠급니다.","01 / TEMPORAL LOCK"],["공간장 충전","워프 코어의 에너지를 끌어올립니다.","02 / FIELD CHARGE"],["시공간 접기","두 지점 사이의 거리를 압축합니다.","03 / SPACE FOLD"],["공간 점프 실행","새로운 위치로 가상 이동을 실행합니다.","04 / WARP EXECUTION"]];let p=0,last=-1;setStep(1);$("systemState").textContent="코어 충전 중";$("systemDesc").textContent="공간 점프 시퀀스가 진행 중입니다.";timer=setInterval(()=>{if(cancelRequested){finish(false);return}p+=1.1+Math.random()*2.1;const n=Math.min(3,Math.floor(p/25));if(n!==last){last=n;setStep(n+1);$("warpTitle").textContent=stages[n][0]+" 중...";$("warpText").textContent=stages[n][1];$("warpEyebrow").textContent=stages[n][2]}$("progressBar").style.width=Math.min(100,p)+"%";$("progressLabel").textContent=Math.min(100,Math.floor(p))+"%";if(p>=100)finish(true)},85)}
+function finish(ok){clearInterval(timer);busy=false;$("startWarp").disabled=false;if(!ok){$("overlay").classList.remove("show");setStep(0);$("systemState").textContent="대기 상태";$("systemDesc").textContent="시퀀스가 안전하게 중단되었습니다.";toast("공간 점프 중단","코어가 안전 상태로 복귀했습니다.");return}const a=getPlace($("start").value),b=getPlace($("end").value);$("timeCore").textContent="✓";$("warpEyebrow").textContent="WARP TRANSIT COMPLETE";$("warpTitle").textContent="공간 점프 완료";$("warpText").textContent=a.name+"에서 "+b.name+"까지의 가상 이동이 완료되었습니다."; $("progressBar").style.width="100%";$("progressLabel").textContent="100% · COMPLETE";$("cancelBtn").textContent="도착 장면 보기";$("systemState").textContent="점프 완료";$("systemDesc").textContent=b.name+" 도착 시뮬레이션 완료";setStep(3);$("cancelBtn").onclick=()=>{$("overlay").classList.remove("show");$("timeCore").textContent="⟡";$("cancelBtn").textContent="시퀀스 중단";$("cancelBtn").onclick=cancelWarp;showArrival(b);$("arrivalScene").scrollIntoView({behavior:"smooth",block:"center"});toast("도착 완료",b.name+" 목적지 장면을 열었습니다.")}}
+function cancelWarp(){if(busy)cancelRequested=true;else{$("overlay").classList.remove("show");$("timeCore").textContent="⟡";$("cancelBtn").textContent="시퀀스 중단";$("cancelBtn").onclick=cancelWarp}}
+$("startWarp").addEventListener("click",startWarp);$("cancelBtn").addEventListener("click",cancelWarp);
+
+function showArrival(place){
+  const scene=$("arrivalScene"),art=$("arrivalArt"),sky=$("sceneSkyline");
+  const themes={
+    campus:["#5f8793","#d9c9a3","#35505a"],expo:["#263d52","#8ca9b4","#273745"],station:["#334e65","#b7c1c4","#202b36"],
+    neighborhood:["#9aafc0","#d8d8ce","#3c5059"],night:["#263a65","#c18b6d","#101725"],city:["#354f70","#d7a66b","#202d3b"],
+    palace:["#7e9da9","#d7b58a","#3c554e"],airport:["#67899b","#d8dce0","#273b4a"],coast:["#5c9fb1","#e9c58c","#1d5367"],
+    island:["#70b6bd","#f2d59b","#247f82"],field:["#9eae9c","#e4ce9b","#586a4b"],tower:["#4c6386","#d6b77b","#172b45"],
+    river:["#476d89","#e2c28b","#183e55"],park:["#6f9c87","#e0c99a","#335b49"],village:["#829c9e","#d6bb8d","#5b6659"],
+    historic:["#899c9a","#e7ca91","#6a755e"]
+  };
+  const t=themes[place.scene]||themes.city;
+  art.style.background=`linear-gradient(180deg,${t[0]},${t[1]} 55%,${t[2]})`;
+  sky.innerHTML="";
+  const heights=[34,51,70,43,90,57,38,65,48,78,32,59,45,72,40];
+  heights.forEach((h,i)=>{const el=document.createElement("i");el.style.setProperty("--h",h+"%");if(i===4&&(place.scene==="tower"||place.scene==="city"||place.scene==="station"))el.className="tower";sky.appendChild(el)});
+  if(place.scene==="coast"||place.scene==="island"||place.scene==="field"||place.scene==="park"||place.scene==="village"){
+    sky.style.background="linear-gradient(0deg,#ffffff10,transparent 45%)";
+    sky.querySelectorAll("i").forEach((el,i)=>{el.style.height=(18+(i*17)%42)+"%";el.style.width=(place.scene==="coast"||place.scene==="island"?"12%":"7%")});
+  }else{sky.style.background="";}
+  $("arrivalTitle").textContent=place.name+"에 도착했습니다.";
+  $("arrivalSubtitle").textContent=place.area+" · "+place.detail+"의 분위기를 담은 가상 도착 장면입니다.";
+  $("arrivalCoords").textContent=place.lat.toFixed(3)+"° N · "+place.lon.toFixed(3)+"° E";
+  scene.classList.add("show");
+}
+$("dismissArrival").addEventListener("click",()=>{$("route").scrollIntoView({behavior:"smooth",block:"center"});$("start").focus()});
+
+populateSelects();clock();setInterval(clock,1000);
+</script>
+</body>
+</html>
